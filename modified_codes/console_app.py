@@ -60,3 +60,33 @@ class PointsOfInterestManager:
             print(f"Enquiry '{enquiry}' answered successfully!")
         else:
             print("No enquiries to answer.")
+            
+    def find_route(self, origin, destination):
+        route = []
+        visited = set()
+        stack = [origin]
+        while stack:
+            point_of_interest = stack.pop()
+            if point_of_interest not in visited:
+                visited.add(point_of_interest)
+                route.append(point_of_interest)
+                if point_of_interest == destination:
+                    break
+                for neighbor in self.links[point_of_interest]:
+                    if neighbor not in visited:
+                        stack.append(neighbor)
+        return route
+    
+    def sort_points_of_interest(self):
+        # Insertion sort algorithm to sort the points of interest by name
+        for i in range(1, len(self.points_of_interest)):
+            point_of_interest = self.points_of_interest[i]
+            j = i - 1
+            while j >= 0 and self.points_of_interest[j].name > point_of_interest.name:
+                self.points_of_interest[j + 1] = self.points_of_interest[j]
+                j -= 1
+            self.points_of_interest[j + 1] = point_of_interest
+    
+    def add_link(self, point_of_interest1, point_of_interest2):
+        self.links[point_of_interest1] = point_of_interest2
+        self.links[point_of_interest2] = point_of_interest1
