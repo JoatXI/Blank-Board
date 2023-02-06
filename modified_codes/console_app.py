@@ -90,3 +90,6 @@ class PointsOfInterestManager:
     def add_link(self, point_of_interest1, point_of_interest2):
         self.links[point_of_interest1] = point_of_interest2
         self.links[point_of_interest2] = point_of_interest1
+        
+def main():
+    manager = PointsOfInterestManager()
