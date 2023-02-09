@@ -93,3 +93,20 @@ class PointsOfInterestManager:
         
 def main():
     manager = PointsOfInterestManager()
+    
+     # Hard-coded data for points of interest and links
+    railway_station = PointOfInterest("Railway Station", "Transportation", "A busy train station.")
+    park_cafe = PointOfInterest("Park Cafe", "Food", "A cozy cafe with outdoor seating.")
+    war_memorial = PointOfInterest("War Memorial", "Historical", "A monument honoring fallen soldiers.")
+    white_horse_pub = PointOfInterest("White Horse Pub", "Food and Drink", "A traditional British pub.")
+    museum = PointOfInterest("Museum", "Cultural", "A museum with exhibits on local history.")
+    concert_hall = PointOfInterest("Concert Hall", "Entertainment", "A venue for live music and performances.")
+    movie_theater = PointOfInterest("Movie Theater", "Entertainment", "A place to watch the latest films.")
+
+    manager.add_point_of_interest(railway_station)
+    manager.add_point_of_interest(park_cafe)
+    manager.add_point_of_interest(war_memorial)
+    manager.add_point_of_interest(white_horse_pub)
+    manager.add_point_of_interest(museum)
+    manager.add_point_of_interest(concert_hall)
+    manager.add_point_of_interest(movie_theater)
