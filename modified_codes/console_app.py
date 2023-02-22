@@ -132,3 +132,91 @@ def main():
     manager.add_link(war_memorial, movie_theater)
     manager.add_link(white_horse_pub, movie_theater)
     manager.add_link(white_horse_pub, concert_hall)
+    
+    
+    # Main menu for the application
+    while True:
+        print("1. Add a new point of interest")
+        print("2. Search for a specific point of interest")
+        print("3. Display all points of interest sorted by name")
+        print("4. Search for a point of interest by name")
+        print("5. Delete a specific point of interest")
+        print("6. Save points of interest to file")
+        print("7. Load points of interest from file")
+        print("8. Make an enquiry about a point of interest")
+        print("9. Answer an enquiry for a point of interest")
+        print("10. Find a route between the railway station or bus station and a specific point of interest")
+        print("11. Quit")
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            name = input("Enter the name of the point of interest: ")
+            type = input("Enter the type of the point of interest: ")
+            description = input("Enter a description of the point of interest: ")
+            point_of_interest = PointOfInterest(name, type, description)
+            manager.add_point_of_interest(point_of_interest)
+            print("Point of interest added successfully!")
+        elif choice == 2:
+            name = input("Enter the name of the point of interest: ")
+            point_of_interest = manager.search_point_of_interest(name)
+            if point_of_interest:
+                print(f"Name: {point_of_interest.name}")
+                print(f"Type: {point_of_interest.type}")
+                print(f"Description: {point_of_interest.description}")
+            else:
+                print("Point of interest not found.")
+        elif choice == 3:
+            manager.sort_points_of_interest()
+            for point_of_interest in manager.points_of_interest:
+                print(point_of_interest.name)
+        elif choice == 4:
+            name = input("Enter the name of the point of interest: ")
+            point_of_interest = manager.search_point_of_interest(name)
+            if point_of_interest:
+                print("Point of interest found.")
+            else:
+                print("Point of interest not found.")
+        elif choice == 5:
+            name = input("Enter the name of the point of interest: ")
+            manager.delete_point_of_interest(name)
+            print("Point of interest deleted successfully!")
+        elif choice == 6:
+            filename = input("Enter the filename: ")
+            manager.save_points_of_interest(filename)
+            print("Points of interest saved successfully!")
+        elif choice == 7:
+            filename = input("Enter the filename: ")
+            manager.load_points_of_interest(filename)
+            print("Points of interest loaded successfully!")
+        elif choice == 8:
+            name = input("Enter the name of the point of interest: ")
+            point_of_interest = manager.search_point_of_interest(name)
+            if point_of_interest:
+                enquiry = input("Enter your enquiry: ")
+                manager.make_enquiry(point_of_interest, enquiry)
+            else:
+                print("Point of interest not found.")
+        elif choice == 9:
+            name = input("Enter the name of the point of interest: ")
+            point_of_interest = manager.search_point_of_interest(name)
+            if point_of_interest:
+                manager.answer_enquiry(point_of_interest)
+            else:
+                print("Point of interest not found.")
+        elif choice == 10:
+            origin = input("Enter the name of the origin point of interest (railway station or bus station): ")
+            destination = input("Enter the name of the destination point of interest: ")
+            route = manager.find_route(origin, destination)
+            if route:
+                print("Route:")
+                for point_of_interest in route:
+                    print(point_of_interest.name)
+            else:
+                print("Route not found.")
+        elif choice == 11:
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
