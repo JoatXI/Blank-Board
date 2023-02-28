@@ -136,17 +136,17 @@ def main():
     
     # Main menu for the application
     while True:
-        print("1. Add a new point of interest")
-        print("2. Search for a specific point of interest")
-        print("3. Display all points of interest sorted by name")
-        print("4. Search for a point of interest by name")
-        print("5. Delete a specific point of interest")
-        print("6. Save points of interest to file")
-        print("7. Load points of interest from file")
-        print("8. Make an enquiry about a point of interest")
-        print("9. Answer an enquiry for a point of interest")
-        print("10. Find a route between the railway station or bus station and a specific point of interest")
-        print("11. Quit")
+        print(f"\n1. Add a new point of interest\n")
+        print(f"2. Search for a specific point of interest\n")
+        print(f"3. Display all points of interest sorted by name\n")
+        print(f"4. Search for a point of interest by name\n")
+        print(f"5. Delete a specific point of interest\n")
+        print(f"6. Save points of interest to file\n")
+        print(f"7. Load points of interest from file\n")
+        print(f"8. Make an enquiry about a point of interest\n")
+        print(f"9. Answer an enquiry for a point of interest\n")
+        print(f"10. Find a route between the railway station or bus station and a specific point of interest\n")
+        print(f"11. Quit\n")
         choice = int(input("Enter your choice: "))
 
         if choice == 1:
@@ -160,9 +160,9 @@ def main():
             name = input("Enter the name of the point of interest: ")
             point_of_interest = manager.search_point_of_interest(name)
             if point_of_interest:
-                print(f"Name: {point_of_interest.name}")
-                print(f"Type: {point_of_interest.type}")
-                print(f"Description: {point_of_interest.description}")
+                print(f"Name: {point_of_interest.name}\n")
+                print(f"Type: {point_of_interest.type}\n")
+                print(f"Description: {point_of_interest.description}\n")
             else:
                 print("Point of interest not found.")
         elif choice == 3:
