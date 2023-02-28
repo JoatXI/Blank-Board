@@ -4,6 +4,7 @@ import wikipedia
 import pywhatkit
 import datetime
 import pyjokes
+import selenium
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
