@@ -32,4 +32,7 @@ def taking_voice_commands():
     return command
 
 def print_run():
-    pass
+    command = taking_voice_commands()
+    print(command)
+    if command in wake_commands:
+        pass
