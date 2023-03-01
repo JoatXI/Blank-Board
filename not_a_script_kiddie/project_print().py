@@ -23,7 +23,7 @@ def taking_voice_commands():
             command = listener.recognize_google(voice)
             command = command.lower()
             if "print" in command: # print() being the name of this AI (Note: should progamme AI with the abililty to change it's name through user command)
-                command = command.replace("print", '')
+                command = command.replace("print", "")
                 speak(command)
     except:
         pass
