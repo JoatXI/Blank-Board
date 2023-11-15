@@ -91,9 +91,9 @@ def binary_search(sorted_data, target):
         
         if mid_point_value == target:
             return mid_point # Success, target value found
-        elif mid_point_value > target:
-            first_index = mid_point + 1 # Divides the "sorted_data" into 2 haves and searches the right half.
         elif mid_point_value < target:
+            first_index = mid_point + 1 # Divides the "sorted_data" into 2 haves and searches the right half.
+        elif mid_point_value > target:
             last_index = mid_point - 1 # Divides the "sorted_data" into 2 haves and searches the left half.
             
     return -1 # Target value not found
