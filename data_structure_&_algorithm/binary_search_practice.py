@@ -31,21 +31,21 @@ def locate_card(cards, query):
     return -1
     
 
-locate_card([13, 11, 10, 7, 4, 3, 1, 0], 11)
 
 # Here's how binary search can be applied to our problem:
-
 # Find the middle element of the list.
 # If it matches queried number, return the middle position as the answer.
 # If it is less than the query number, then search the first half of the list
 # If it is greater than the queried number, then search the second half of the list
 # If no more elements remain, return -1.
 
-def test_location(cards, query, mid):
-    mid_number = cards[mid]
+
+# creating a test case incase the query appears more than once
+def test_location(cards, query, mid_point):
+    mid_number = cards[mid_point]
     if mid_number == query:
-        print("mid: ", mid, " mid_number: ", mid_number)
-        if mid - 1 >= 0 and cards[mid - 1] == query:
+        print("mid: ", mid_point, " mid_number: ", mid_number)
+        if mid_point - 1 >= 0 and cards[mid_point - 1] == query:
             return "left"
         else:
             return "found"
@@ -57,26 +57,53 @@ def test_location(cards, query, mid):
 
 def locate_card2(cards, query):
     
-    low = 0
-    high = len(cards) - 1
+    first_index = 0
+    last_index = len(cards) - 1
     
     #Finds the middle number of the list
-    while low <= high:
-        print("low: ", low, ", high: ", high)
-        # double // is used in case where (low + high) is not divisible by 2
-        mid = (low + high) // 2 # this can also be done as: math.floor((start + end) / 2).. math needs to be imported for this to work.
+    while first_index <= last_index:
+        print("low: ", first_index, ", high: ", last_index)
+        # double // is used in case where (first_index + last_index) is not divisible by 2
+        mid_point = (first_index + last_index) // 2 # this can also be done as: math.floor((start + end) / 2).. math needs to be imported for this to work.
         
-        result = test_location(cards, query, mid)
+        result = test_location(cards, query, mid_point)
         
         if result == "found":
-            return mid
+            return mid_point
         elif result == "left":
-            high = mid - 1
+            last_index = mid_point - 1
         elif result == "right":
-            low = mid + 1
+            first_index = mid_point + 1
     
     # if query is not found            
     return -1
         
         
-locate_card2([13, 11, 10, 7, 4, 3, 1, 0], 11)
+# so a proper binary search will look like this:
+def binary_search(sorted_data, target):
+    first_index, last_index = 0, len(sorted_data) - 1
+    
+    while first_index <= last_index:
+        # Gets the index of the mid point
+        mid_point = (first_index + last_index) // 2
+        # Gets the value at the mid point
+        mid_point_value = sorted_data[mid_point]
+        
+        if mid_point_value == target:
+            return mid_point # Success, target value found
+        elif mid_point_value > target:
+            first_index = mid_point + 1 # Divides the "sorted_data" into 2 haves and searches the right half.
+        elif mid_point_value < target:
+            last_index = mid_point - 1 # Divides the "sorted_data" into 2 haves and searches the left half.
+            
+    return -1 # Target value not found
+        
+        
+sorted_data = [13, 11, 10, 7, 4, 3, 1, 0]
+target = 0
+search_result = binary_search(sorted_data, target)
+
+if search_result != -1:
+    print(f"Target value {target} found at index {search_result}")
+else:
+    print(f"Target value {target} not found in the dataset")
