@@ -56,7 +56,6 @@ def brute_two_sum(nums, target):
     # assume it is an unsorted list as there's no mention of the array being sorted or not
     
     # creating index variable and empty result list
-    """
     position = 0
     result_list = []
     
@@ -69,14 +68,50 @@ def brute_two_sum(nums, target):
                 return result_list
         
             position += 1
-            
-    """
+       
+    # trying to implement a much more optimal approach with al algorithm that is less than 0(N^2) time complexity..
+        # create an empty list that will later take in the indices
+        # create two variables start_point and end_point with the values 0 and len(nums) -1 respectively that tracks the start and end point of the array
+        # sort the list
+        # get the first number by getting the midpoint of list
+        # check if the sum of the current number and the number at the next index is equal to the target
+        # if it is, return the index of both numbers
+        # if it isn't, check if the sum of the current numbers is less than target and adjust the search area to the right of the array
+        #if it is greater than the target then move search area to the left
+        
+        
+def binary_search(nums, target):
+    start_point, end_point = 0, len(nums) - 1
     
-def two_sum(nums, target):
-    pass
-           
-nums = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
-target = 26
+    while start_point <= end_point:
+        mid_point = (start_point + end_point) // 2
+        mid_point_value = nums[mid_point]
+        
+        if mid_point_value == target:
+            return mid_point
+        elif mid_point_value < target:
+            start_point += 1
+        elif mid_point_value > target:
+            end_point -= 1
+            
+    return -1
 
-result = brute_two_sum(nums, target)
-print(result)
+def two_sum(nums, target):
+    for i, j in enumerate(nums):
+        second_value = target - j
+        
+        second_index = binary_search(nums, second_value)
+        
+        if second_index != -1 and second_index != i:
+            return [i, second_index]
+        
+    return []
+
+           
+nums = [3, 2, 4]
+target = 6
+
+brute_result = brute_two_sum(nums, target)
+binary_result = two_sum(nums, target)
+print(brute_result)
+print(binary_result)
