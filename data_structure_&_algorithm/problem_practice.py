@@ -15,3 +15,17 @@ query = 6
 
 two_result = twoSum(nums, query)
 print(two_result)
+
+# testing bubble sort algorithm:
+
+def bubbleSort(nums):
+    
+    for _ in range(len(nums) - 1):
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                nums[i], nums[i+1] = nums[i + 1], nums[i]
+    return nums
+
+nums = [3, 2, 4]
+bub = bubbleSort(nums)
+print(bub)
